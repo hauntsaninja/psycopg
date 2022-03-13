@@ -23,6 +23,7 @@ Psycopg 3.1 (unreleased)
 - Add `Error.pgconn` and `Error.pgresult` attributes (:ticket:`#242`).
 - Allow `bytearray`/`memoryview` data too as `Copy.write()` input
   (:ticket:`#254`).
+- Add explicit type cast to values converted by `sql.Literal` (:ticket:`#205`).
 - Drop support for Python 3.6.
 
 
