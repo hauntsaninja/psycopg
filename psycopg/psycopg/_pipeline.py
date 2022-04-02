@@ -66,7 +66,7 @@ class BasePipeline:
 
     @staticmethod
     def is_supported() -> bool:
-        """Return `True` if the psycopg libpq wrapper suports pipeline mode."""
+        """Return `!True` if the psycopg libpq wrapper suports pipeline mode."""
         if BasePipeline._is_supported is None:
             # Support only depends on the libpq functions available in the pq
             # wrapper, not on the database version.
@@ -223,12 +223,6 @@ class AsyncPipeline(BasePipeline):
         super().__init__(conn)
 
     async def sync(self) -> None:
-        """Sync the pipeline, send any pending command and fetch and process
-        all available results.
-
-        This is called when exiting the pipeline, but can be used for other
-        purposes (e.g. in nested pipelines).
-        """
         async with self._conn.lock:
             await self._conn.wait(self._sync_gen())
 
